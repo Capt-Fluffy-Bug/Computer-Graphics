@@ -1,6 +1,6 @@
 # Program to display basic transformations in Processing
 
-# Controls</br></br>
+# Controls</br>
 Click to create shape</br></br>
 Press s to scale by scaling factor 2</br></br>
 Press r to rotate by 90 degrees</br></br>
