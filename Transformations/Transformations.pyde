@@ -4,9 +4,10 @@ def setup():
     size(720, 720)
     background(255)
     stroke(0)
+    strokeWeight(3)
     
 def draw():
-
+    background(255)
     line(width/2,0,width/2,height)
     line(0,height/2,width,height/2)
     drawline()
@@ -17,7 +18,7 @@ def mousePressed():
 
     if(mousePressed):
         points.append([mouseX-a, -(mouseY-b)])
-        print(points)
+        #print(points)
         
 def drawline():
 
@@ -49,6 +50,8 @@ def keyPressed():
         reflectAboutYequalX() # reflect along Y = X if = is pressed
     if(keyCode == 45):
         reflectAboutYequalmX() # reflect along Y = -X if - is pressed
+    if(keyCode == 8):
+        clearscreen() # clear the graph if backspace is pressed
             
         
         
@@ -61,11 +64,14 @@ def scaleimg():
         points[i][1] = points[i][1] * sy
         
 def rotateimg():
-    angle = 90
-    #assuming anti-clockwise rotation
+    angle = radians(90)
+    
+    #assuming clockwise rotation
     for i in range(len(points)):
-        points[i][0] = points[i][0]*cos(angle) + points[i][1]*sin(angle)
-        points[i][1] = -points[i][0]*sin(angle) + points[i][1]*sin(angle)
+        x = points[i][0]
+        y = points[i][1]
+        points[i][0] = x*cos(angle) + y*sin(angle)
+        points[i][1] = -x*sin(angle) + y*cos(angle)
         
 def translateimg():
     tx, ty = 50, 50 #assuming we move 50 right and 50 up
@@ -99,6 +105,11 @@ def reflectAboutYequalmX():
         temp = -points[i][0]
         points[i][0] = -points[i][1]        
         points[i][1] = temp        
+        
+def clearscreen():
+    for i in range(len(points)-1):
+        points.pop(i)
+    points.pop(0)
         
         
         
